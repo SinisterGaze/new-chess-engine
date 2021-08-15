@@ -40,10 +40,10 @@ $(BUILD_DIR)/%.$(OBJ_EXT) : $(SRC_DIR)/%.$(SRC_EXT)
 	@$(CC) $(CXXFLAGS) $(INCLUDES) -c -o $@ $<
 
 clean:
-	@echo Removing /$(BUILD_DIR) directory and all of its content.
+	@echo Removing $(BUILD_DIR)/ directory and all of its content.
 	@$(RM) -rf $(BUILD_DIR)
 
 cleaner: clean
-	@echo Removing executables from /$(BIN_DIR)
+	@echo Removing executables from $(BIN_DIR)/
 	@$(RM) $(BIN_DIR)/*.exe
 

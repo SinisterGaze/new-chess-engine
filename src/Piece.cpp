@@ -19,13 +19,15 @@ Piece::~Piece()
     delete this;
 }
 
-void Piece::setPosition(int position)
+void Piece::setPosition(unsigned long long position)
 {
-    this->position = 1ULL<<(position-1);
+    assert(__builtin_popcountll(position) == 1 && position > 0);
+    this->position = position;
 }
 
 void Piece::setColor(bool color)
 {
+    assert(color == WHITE || color == BLACK);
     this->color = color;
 }
 

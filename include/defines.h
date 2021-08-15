@@ -8,15 +8,11 @@
 #include <bitset>
 #include <assert.h>
 
-enum Pieces {PAWN, ROOK, KNIGHT, BISHOP, KING, QUEEN};
-enum Color {BLACK, WHITE};
+#define bitboard bitset<64>
 
 using namespace std;
 
-int toTilePosition(unsigned long long bin);
-unsigned long long toBinaryPosition(unsigned tile);
-string toStringType(unsigned type);
-string toStringColor(bool color);
-void displayBoard(const bitset<64> &bit);
+enum Pieces {PAWN, ROOK, KNIGHT, BISHOP, KING, QUEEN};
+enum Color {BLACK, WHITE};
 
 #endif

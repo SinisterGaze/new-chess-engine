@@ -13,6 +13,7 @@ class BoardState
         ~BoardState();
 
         // Functions
+        void update();
         void displayBoardState();
         void addPiece(Piece * p);
         unsigned long long getOccupiedPositions();

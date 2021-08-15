@@ -3,12 +3,13 @@
 #ifndef PIECE_H
 #define PIECE_H
 
+class BoardState;
 
 class Piece {
     public:
         Piece(bool color = WHITE, unsigned position = -1);
         ~Piece();
-        void setPosition(int pos);
+        void setPosition(unsigned long long position);
         void setColor(bool color);
         void setType(unsigned type);
         unsigned long long getPosition();

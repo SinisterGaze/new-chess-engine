@@ -23,6 +23,10 @@ BoardState::~BoardState()
     pieces.clear();
 }
 
+void BoardState::update()
+{
+    
+}
 
 void BoardState::displayBoardState()
 {
