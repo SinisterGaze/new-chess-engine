@@ -1,26 +1,25 @@
 #include "defines.h"
+#include "BoardState.h"
 
 #ifndef PIECE_H
 #define PIECE_H
 
-class BoardState;
-
 class Piece {
     public:
-        Piece(bool color = WHITE, unsigned position = -1);
+        Piece(uint64_t position, unsigned color);
         ~Piece();
-        void setPosition(unsigned long long position);
+        void setPosition(uint64_t position);
         void setColor(bool color);
         void setType(unsigned type);
-        unsigned long long getPosition();
-        virtual unsigned long long getPossibleMoves();
+        uint64_t getPosition();
+        virtual uint64_t getPossibleMoves(BoardState * bs);
         bool getColor();
         unsigned getType();
     
     protected:
         unsigned type;
         bool color;
-        unsigned long long position; 
+        uint64_t position; 
 };
 
 #endif

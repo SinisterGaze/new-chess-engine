@@ -4,10 +4,9 @@ using namespace std;
 
 // PIECE FUNCTION DEFINITIONS
 
-Piece::Piece(bool color, unsigned position)
+Piece::Piece(uint64_t position, unsigned color)
 {
     this->color = color;
-    assert(position >=1 && position <=64);
     if (position)
     {
         setPosition(position);
@@ -16,10 +15,10 @@ Piece::Piece(bool color, unsigned position)
 
 Piece::~Piece()
 {
-    delete this;
+    
 }
 
-void Piece::setPosition(unsigned long long position)
+void Piece::setPosition(uint64_t position)
 {
     assert(__builtin_popcountll(position) == 1 && position > 0);
     this->position = position;
@@ -36,12 +35,12 @@ void Piece::setType(unsigned type)
     this->type = type;
 }
 
-unsigned long long Piece::getPosition()
+uint64_t Piece::getPosition()
 {
     return this->position;
 }
 
-unsigned long long Piece::getPossibleMoves()
+uint64_t Piece::getPossibleMoves(BoardState * bs)
 {
     return 0;
 }

@@ -3,14 +3,18 @@
 #ifndef UTILS_H
 #define UTILS_H
 
-void displayBoard(const bitboard & bit);
+
+
+void displayBoard(const uint64_t & bitboard);
 void demonstrateBoardPosition();
 
-std::string toStringColor(bool color);
-std::string toStringType(unsigned type);
+string toStringColor(bool color);
+string toStringType(unsigned type);
 
-int toTilePosition(unsigned long long bin);
-unsigned long long toBinaryPosition(unsigned tile);
+int toTilePosition(uint64_t bin);
+uint64_t toBinaryPosition(unsigned tile);
+
+
 
 
 #endif 

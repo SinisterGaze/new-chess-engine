@@ -6,8 +6,8 @@
 
 class Pawn : public Piece {
     public:
-        Pawn(bool color, unsigned position) : Piece(color, position) {setType(PAWN);}
-        unsigned long long getPossibleMoves();
+        Pawn(uint64_t position, unsigned color) : Piece(position, color) {setType(PAWN);}
+        uint64_t getPossibleMoves(BoardState * bs);
         
     private:
         bool hasMoved = false;

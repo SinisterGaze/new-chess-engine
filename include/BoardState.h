@@ -1,5 +1,4 @@
 #include "defines.h"
-#include "Piece.h"
 
 #ifndef BOARDSTATE_H
 #define BOARDSTATE_H
@@ -8,18 +7,22 @@
 class BoardState
 {
     public:
-        BoardState(vector<Piece*> pieces);
-        BoardState();
+        BoardState(bool initialize = true);
         ~BoardState();
 
         // Functions
-        void update();
         void displayBoardState();
-        void addPiece(Piece * p);
-        unsigned long long getOccupiedPositions();
+        uint64_t getOccupiedPositions(uint64_t type = 0b111111, uint64_t color = 0b11);
 
         // Variables
-        vector<Piece*> pieces;
+        BoardState * previousState;
+
+    protected:
+        uint64_t whitePawn, whiteRook, whiteKnight, whiteBishop, whiteQueen, whiteKing;
+        uint64_t blackPawn, blackRook, blackKnight, blackBishop, blackQueen, blackKing;
+        uint32_t ply;
+        bool hasWhiteCastled, hasBlackCastled;
+        bool whiteCheck, blackCheck;   
 };
 
 #endif

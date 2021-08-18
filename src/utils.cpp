@@ -1,6 +1,6 @@
 #include "utils.h"
 
-int toTilePosition(unsigned long long bin)
+int toTilePosition(uint64_t bin)
 {
     assert(__builtin_popcountll(bin) == 1);
     unsigned cnt =1;
@@ -8,13 +8,13 @@ int toTilePosition(unsigned long long bin)
     return cnt;
 }
 
-unsigned long long toBinaryPosition(unsigned tile)
+uint64_t toBinaryPosition(unsigned tile)
 {
     assert(tile >= 1 && tile <= 64);
     return 1ULL<<(tile-1);
 }
 
-std::string toStringType(unsigned type)
+string toStringType(unsigned type)
 {
     assert(type <=5);
     switch(type) {
@@ -41,7 +41,7 @@ std::string toStringType(unsigned type)
     }
 }
 
-std::string toStringColor(bool color)
+string toStringColor(bool color)
 {
     assert(color == WHITE || color == BLACK);
     if (color == WHITE) return "White";
@@ -49,26 +49,25 @@ std::string toStringColor(bool color)
     else return "No color";
 }
 
-void displayBoard(const bitboard & bit)
+void displayBoard(const uint64_t & bitboard)
 {
-    unsigned long long bitull = bit.to_ullong();
-
-    for (unsigned i = 0; i < 64; i++)
+    cout << "\n";
+    for (unsigned i = 1; i <= 64; i++)
     {
-        unsigned long long currentBit = 1ULL<<(64-i);
-        if (bitull & currentBit) std::cout << "1";
-        else std::cout << "0";
-        if ((i+1)%8==0) std::cout << "\n";
+        uint64_t currentBit = 1ULL<<(64-i);
+        if (bitboard & currentBit) cout << "1";
+        else cout << "0";
+        if (i%8==0) cout << "\n";
     }
-    std::cout << "\n";
+    cout << "\n";
 }
 
 void demonstrateBoardPosition()
 {
     for (unsigned i = 0; i < 64; i++)
     {
-        std::cout << "   " << (64-i < 10 ? " " : "") << (64-i) << "  "; 
+        cout << "   " << (64-i < 10 ? " " : "") << (64-i) << "  "; 
         
-        if ((1+i)%8==0) std::cout << "\n";
+        if ((1+i)%8==0) cout << "\n";
     }
 }
