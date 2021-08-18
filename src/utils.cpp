@@ -1,5 +1,29 @@
 #include "utils.h"
 
+map<uint64_t, unsigned> COLUMNS = 
+{   
+    {BOARD_COLUMNS::A, 0},
+    {BOARD_COLUMNS::B, 1},
+    {BOARD_COLUMNS::C, 2},
+    {BOARD_COLUMNS::D, 3},
+    {BOARD_COLUMNS::E, 4},
+    {BOARD_COLUMNS::F, 5},
+    {BOARD_COLUMNS::G, 6},
+    {BOARD_COLUMNS::H, 7}
+};
+
+map<uint64_t, unsigned> ROWS = 
+{
+    {BOARD_ROWS::ONE, 0},
+    {BOARD_ROWS::TWO, 1},
+    {BOARD_ROWS::THREE, 2},
+    {BOARD_ROWS::FOUR, 3},
+    {BOARD_ROWS::FIVE, 4},
+    {BOARD_ROWS::SIX, 5},
+    {BOARD_ROWS::SEVEN, 6},
+    {BOARD_ROWS::EIGHT, 7}
+};
+
 int toTilePosition(uint64_t bin)
 {
     assert(__builtin_popcountll(bin) == 1);
@@ -71,3 +95,14 @@ void demonstrateBoardPosition()
         if ((1+i)%8==0) cout << "\n";
     }
 }
+
+unsigned getCol(const uint64_t & pos)
+{
+    return 0;
+}
+
+uint64_t getHorizontalMoves(const uint64_t & pos, const uint64_t & whiteOccupied, const uint64_t & blackOccupied)
+{
+    return 0;
+}
+

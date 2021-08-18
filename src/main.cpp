@@ -9,7 +9,8 @@ using namespace std;
 int main()
 {
     
-    
+    cout << COLUMNS[A] << endl;
+
     return 0;
 }
 
