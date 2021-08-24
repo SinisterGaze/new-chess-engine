@@ -9,16 +9,16 @@ class Piece {
         Piece(uint64_t position, unsigned color);
         ~Piece();
         void setPosition(uint64_t position);
-        void setColor(bool color);
+        void setColor(unsigned color);
         void setType(unsigned type);
         uint64_t getPosition();
         virtual uint64_t getPossibleMoves(BoardState * bs);
-        bool getColor();
+        unsigned getColor();
         unsigned getType();
     
     protected:
         unsigned type;
-        bool color;
+        unsigned color;
         uint64_t position; 
 };
 

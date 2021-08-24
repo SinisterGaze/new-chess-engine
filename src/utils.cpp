@@ -24,7 +24,49 @@ map<uint64_t, unsigned> ROWS =
     {BOARD_ROWS::EIGHT, 7}
 };
 
-int toTilePosition(uint64_t bin)
+unsigned getRow(const uint64_t & pos)
+{   
+    unsigned row = 0;
+    for (auto it = ROWS.begin(); it != ROWS.end(); it++)
+    {
+        if ((it->first & pos) > 0)
+        {
+            row = it->second;
+        }
+    }
+    assert(row <= 7);
+    return row;
+}
+
+unsigned getCol(const uint64_t & pos)
+{   
+    unsigned col = 0;
+    for (auto it = COLUMNS.begin(); it != COLUMNS.end(); it++)
+    {
+        if ((it->first & pos) > 0)
+        {
+            col = it->second;
+        }
+    }
+    assert(col <= 7);
+    return col;
+}
+
+uint64_t toBitboard(const string & tile)
+{
+    assert(tile.size() == 2);
+    unsigned row = (unsigned)(tile[1] -  '1');
+    unsigned col = (unsigned)(tile[0] - 'A');
+    assert(row <= 7 && col <=7);
+    return (1ULL<<((7-col) + 8*row));
+}
+
+uint64_t toBitboard(const unsigned & row, const unsigned & col)
+{
+    return (1ULL<<((7-col) + 8*row));
+}
+
+/*int toTilePosition(uint64_t bin)
 {
     assert(__builtin_popcountll(bin) == 1);
     unsigned cnt =1;
@@ -36,7 +78,7 @@ uint64_t toBinaryPosition(unsigned tile)
 {
     assert(tile >= 1 && tile <= 64);
     return 1ULL<<(tile-1);
-}
+}*/
 
 string toStringType(unsigned type)
 {
@@ -96,13 +138,119 @@ void demonstrateBoardPosition()
     }
 }
 
-unsigned getCol(const uint64_t & pos)
+uint64_t getHorizontalMoves(const unsigned & color, const uint64_t & pos, const uint64_t & whiteOccupied, const uint64_t & blackOccupied)
 {
-    return 0;
+    uint64_t moves = 0;
+    unsigned rowPos = getRow(pos);
+    unsigned colPos = getCol(pos);
+
+    for (int col = colPos-1; col >= 0; col--)
+    {
+        uint64_t compare = toBitboard(rowPos, col);
+        if (compare & blackOccupied)
+        {
+            if (color == COLORS::WHITE)
+            {
+                moves |= compare;
+            }
+            break;
+        }
+        else if (compare & whiteOccupied)
+        {
+            if (color == COLORS::BLACK)
+            {
+                moves |= compare;
+            }
+            break;
+        }
+        else
+        {
+            moves |= compare;
+        }
+    }
+    for (int col = colPos+1; col < 8; col++)
+    {
+        uint64_t compare = toBitboard(rowPos, col);
+        if (compare & blackOccupied)
+        {
+            if (color == COLORS::WHITE)
+            {
+                moves |= compare;
+            }
+            break;
+        }
+        else if (compare & whiteOccupied)
+        {
+            if (color == COLORS::BLACK)
+            {
+                moves |= compare;
+            }
+            break;
+        }
+        else
+        {
+            moves |= compare;
+        }
+    }
+    return moves;
 }
 
-uint64_t getHorizontalMoves(const uint64_t & pos, const uint64_t & whiteOccupied, const uint64_t & blackOccupied)
+uint64_t getVerticalMoves(const unsigned & color, const uint64_t & pos, const uint64_t & whiteOccupied, const uint64_t & blackOccupied)
 {
-    return 0;
+    uint64_t moves = 0;
+    unsigned rowPos = getRow(pos);
+    unsigned colPos = getCol(pos);
+
+    for (int row = rowPos-1; row >= 0; row--)
+    {
+        uint64_t compare = toBitboard(row, colPos);
+        if ((compare & blackOccupied) > 0)
+        {
+            if (color == COLORS::WHITE)
+            {
+                moves |= compare;
+            }
+            break;
+        }
+        else if ((compare & whiteOccupied) > 0)
+        {
+            if (color == COLORS::BLACK)
+            {
+                moves |= compare;
+            }
+            break;
+        }
+        else
+        {
+            moves |= compare;
+        }
+    }
+    for (int row = rowPos+1; row < 8; row++)
+    {
+        uint64_t compare = toBitboard(row, colPos);
+        if ((compare & blackOccupied) > 0)
+        {
+            if (color == COLORS::WHITE)
+            {
+                moves |= compare;
+            }
+            break;
+        }
+        else if ((compare & whiteOccupied) > 0)
+        {
+            if (color == COLORS::BLACK)
+            {
+                moves |= compare;
+            }
+            break;
+        }
+        else
+        {
+            moves |= compare;
+        }
+    }
+    return moves;
 }
+
+
 

@@ -24,9 +24,9 @@ void Piece::setPosition(uint64_t position)
     this->position = position;
 }
 
-void Piece::setColor(bool color)
+void Piece::setColor(unsigned color)
 {
-    assert(color == WHITE || color == BLACK);
+    assert(color == COLORS::WHITE || color == COLORS::BLACK);
     this->color = color;
 }
 
@@ -45,7 +45,7 @@ uint64_t Piece::getPossibleMoves(BoardState * bs)
     return 0;
 }
 
-bool Piece::getColor()
+unsigned Piece::getColor()
 {
     return this->color;
 }

@@ -50,23 +50,23 @@ void BoardState::displayBoardState()
 uint64_t BoardState::getOccupiedPositions(uint64_t type, uint64_t color)
 {
     uint64_t occupied = 0b0;
-    if (color & 0b1)
+    if (color & COLORS::WHITE)
     {
-        if (type & 0b1) occupied |= whitePawn;
-        if (type & 0b10) occupied |= whiteRook;
-        if (type & 0b100) occupied |= whiteKnight;
-        if (type & 0b1000) occupied |= whiteBishop;
-        if (type & 0b10000) occupied |= whiteKing;
-        if (type & 0b100000) occupied |= whiteQueen;
+        if (type & TYPES::PAWN) occupied |= whitePawn;
+        if (type & TYPES::ROOK) occupied |= whiteRook;
+        if (type & TYPES::KNIGHT) occupied |= whiteKnight;
+        if (type & TYPES::BISHOP) occupied |= whiteBishop;
+        if (type & TYPES::KING) occupied |= whiteKing;
+        if (type & TYPES::QUEEN) occupied |= whiteQueen;
     }
-    if (color & 0b10)
+    if (color & COLORS::BLACK)
     {
-        if (type & 0b1) occupied |= blackPawn;
-        if (type & 0b10) occupied |= blackRook;
-        if (type & 0b100) occupied |= blackKnight;
-        if (type & 0b1000) occupied |= blackBishop;
-        if (type & 0b10000) occupied |= blackKing;
-        if (type & 0b100000) occupied |= blackQueen;
+        if (type & TYPES::PAWN) occupied |= blackPawn;
+        if (type & TYPES::ROOK) occupied |= blackRook;
+        if (type & TYPES::KNIGHT) occupied |= blackKnight;
+        if (type & TYPES::BISHOP) occupied |= blackBishop;
+        if (type & TYPES::KING) occupied |= blackKing;
+        if (type & TYPES::QUEEN) occupied |= blackQueen;
     }
     return occupied;
 }
