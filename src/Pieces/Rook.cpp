@@ -1,6 +1,6 @@
 #include "Rook.h"
 
-// PAWN FUNCTION DEFINITIONS
+// ROOK FUNCTION DEFINITIONS
 uint64_t Rook::getPossibleMoves(BoardState * bs)
 {
     uint64_t whiteOccupied = bs->getOccupiedPositions(ALL_TYPES, WHITE);
